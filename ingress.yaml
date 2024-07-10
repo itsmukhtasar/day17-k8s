@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flask-app-ingress
+  namespace: default
+  annotations:
+    external-dns.alpha.kubernetes.io/zone: public
+    cert-manager.io/cluster-issuer: letsencrypt-prod 
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - mukhtasar.online  
+    secretName: flask-app-tls-hlhxz
+  rules:
+  - host: mukhtasar.online 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: flask-app  
+            port:
+              number: 80

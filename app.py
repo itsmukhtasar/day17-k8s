@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 message = '''
 Hello! Amazing progress so far.
-You're doing great! Keep up the fantastic work!
+You're doing great! Keep up the  work!
 '''
 @app.route('/')
 def hello_world():

@@ -1,0 +1,23 @@
+provider: google
+google:
+  project: day17-project
+domainFilters:
+  - mukhtasar.online
+policy: sync
+
+
+extraVolumes:
+  - name: external-dns-gcp-credentials
+    secret:
+      secretName: external-dns-gcp-credentials  # Replace with your Secret containing GCP credentials
+
+extraVolumeMounts:
+  - name: gcp-credentials
+    mountPath: /etc/kubernetes/gcp
+    readOnly: true
+env:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    value: /etc/kubernetes/gcp/key.json
+
+extraArgs:
+  - --google-project=day17-project
